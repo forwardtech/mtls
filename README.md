@@ -1,4 +1,4 @@
-# mtls
+# mTLS
 mTLS implementation in Go
 
 Provides sample implementation of mTLS using two methods.
