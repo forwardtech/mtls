@@ -1,0 +1,7 @@
+#METHOD II
+#Here you generate a certificate and add it to both the client and servers certificate pool before communicating. 
+#This seems simpler which is true, but Method I is closer to what happens in practice.
+#
+#Generate a certificate and a private key (single step process)
+openssl req -x509 -sha256 -nodes -newkey rsa:2048 -keyout cert.key -out cert.crt -subj '/CN=localhost' -days 365
+
