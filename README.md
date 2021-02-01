@@ -13,6 +13,8 @@ Here we create a custom CA certificate which both Server and Client can trust
 
 #### Instructions
 
+(Note: cd to the method1 directory before doing the following)
+
 ```Shell
 # Generate a CA Certificate for signing
 openssl req -new -x509 -nodes -days 365 -keyout selfca.key -out selfca.crt -subj '/CN=selfCA'
@@ -56,6 +58,7 @@ go run client1.go
 ### METHOD II:
 
 #### Instructions
+(Note: cd to the method2 directory before doing the following)
 
 In this method you generate a certificate and add it both to the client and server's certificate pool before communicating. This is simpler but it’s not a typical implementation and it has its drawbacks. Method I is closer to what happens in practice.
 
