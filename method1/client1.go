@@ -12,7 +12,8 @@ import(
 
 func main() {
 
-	// create certificate with client crt and key so the server can verify this client
+        // Load client certificate to send to the 
+        // server - so the server can verify this client
 	clcert, err := tls.LoadX509KeyPair("client1.crt", "client1.key")
 	if err != nil {
 		log.Fatal(err)
@@ -29,7 +30,8 @@ func main() {
         caCertPool := x509.NewCertPool()
         caCertPool.AppendCertsFromPEM(cacert)
 
-	//create https client using the trust CA pool and client certificate
+        //create https client using the trusted CA pool and client certificate
+        //this client cert is sent to the server (so the server can verify you)
 	httpsclient := &http.Client{
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{
