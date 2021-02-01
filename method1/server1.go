@@ -17,8 +17,9 @@ func main() {
 
 	http.HandleFunc("/", reqHandler)
 
-	// Add the selfca certificate to the certificate pool
-	// Read cert
+        // Add the selfca certificate to the certificate pool
+        // Adding selfca to the trusted CAs helps to verify the certificate 
+        // presented by the client (i.e., to trust the client)
 	cacert, err := ioutil.ReadFile("selfca.crt")
 	if err != nil {
 		log.Fatal(err)
@@ -26,11 +27,8 @@ func main() {
 	caCertPool := x509.NewCertPool()
 	caCertPool.AppendCertsFromPEM(cacert)
 
-	// tls config 
-	//tlsConfig := &tls.Config{
-    		//ClientCAs: caCertPool,
-    		//ClientAuth: tls.RequireAndVerifyClientCert,
-	//}
+        // tls config (adds the CA cert pool and 
+        // the option to verify client cert)
 	tlsConfig := &tls.Config{
     		ClientCAs: caCertPool,
     		ClientAuth: tls.RequireAndVerifyClientCert,
